@@ -248,10 +248,10 @@ a2c/
 ### 1. Install a2c
 
 ```bash
-# Install from source
+# Install from source using Poetry
 git clone https://github.com/nikketryhard/antigravity2claudecode
 cd antigravity2claudecode
-pip install -e ".[dev]"
+poetry install
 ```
 
 ### 2. Configure Environment
@@ -297,6 +297,7 @@ Open http://localhost:8080 in your browser to access the web dashboard.
 ### Requirements
 
 - **Python**: 3.10 or higher
+- **Poetry**: 1.0 or higher
 - **PostgreSQL**: 14+ (optional, for debug storage)
 - **Node.js**: 18+ (for UI development only)
 
@@ -307,8 +308,11 @@ Open http://localhost:8080 in your browser to access the web dashboard.
 git clone https://github.com/nikketryhard/antigravity2claudecode
 cd antigravity2claudecode
 
-# Install with development dependencies
-pip install -e ".[dev]"
+# Install dependencies with Poetry
+poetry install
+
+# Activate the virtual environment
+poetry shell
 
 # Verify installation
 a2c version
@@ -1486,20 +1490,20 @@ async def convert_stream(antigravity_lines):
 ### Python Tests
 
 ```bash
-# Install dev dependencies
-pip install -e ".[dev]"
+# Install dependencies (includes dev dependencies)
+poetry install
 
 # Run all tests
-pytest tests/ -v
+poetry run pytest tests/ -v
 
 # Run with coverage
-pytest tests/ --cov=a2c --cov-report=term-missing
+poetry run pytest tests/ --cov=a2c --cov-report=term-missing
 
 # Run specific test file
-pytest tests/unit/test_converter.py -v
+poetry run pytest tests/unit/test_converter.py -v
 
 # Run with debug output
-pytest tests/ -v --tb=long
+poetry run pytest tests/ -v --tb=long
 ```
 
 ### Test Structure
@@ -1688,16 +1692,14 @@ Complex reconnection logic with refs. Consider using `react-use-websocket` or st
 git clone https://github.com/nikketryhard/antigravity2claudecode
 cd antigravity2claudecode
 
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate
+# Install dependencies with Poetry
+poetry install
 
-# Install with dev dependencies
-pip install -e ".[dev]"
+# Activate the virtual environment
+poetry shell
 
 # Install pre-commit hooks
-pip install pre-commit
-pre-commit install
+poetry run pre-commit install
 ```
 
 ### Code Style
@@ -1710,7 +1712,7 @@ pre-commit install
 
 1. Create feature branch: `feat/description` or `fix/issue-number-description`
 2. Write tests for new functionality
-3. Ensure all tests pass: `pytest tests/` and `npm run test`
+3. Ensure all tests pass: `poetry run pytest tests/` and `npm run test`
 4. Update documentation if needed
 5. Submit PR with clear description
 
